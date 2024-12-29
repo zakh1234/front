@@ -152,7 +152,7 @@ const handleDelete = async (id) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-4xl mx-auto p-4 overflow-auto">
       <div className="bg-white rounded-lg shadow-md mb-6 p-4">
         <h2 className="text-xl font-bold mb-4 text-black">
           {editingId ? 'Edit Activity' : 'Post New Activity'}
@@ -331,100 +331,103 @@ const handleDelete = async (id) => {
 
         return (
           <>
-            <div className="flex-1 min-w-[200px] bg-red-50 p-4 rounded-lg">
-              <p className="text-lg font-semibold text-red-800">Total Score</p>
-              <p className="text-3xl font-bold text-red-600">{userData.total_score}</p>
-            </div>
-
-            <div className={`flex-1 min-w-[200px] ${gradeBackground} p-4 rounded-lg`}>
-              <p className="text-lg font-semibold text-white">Current Grade</p>
-              <p className="text-3xl font-bold text-white">{calculatedGrade}</p>
-            </div>
-
-            <div className="flex-1 min-w-[200px] bg-blue-50 p-4 rounded-lg">
-              <p className="text-lg font-semibold text-blue-800">FB Score</p>
-              <p className="text-3xl font-bold text-blue-600">{userData.fb}</p>
-            </div>
-            
-            <div className="flex-1 min-w-[200px] bg-green-50 p-4 rounded-lg">
-              <p className="text-lg font-semibold text-green-800">E. Activity</p>
-              <p className="text-3xl font-bold text-green-600">{userData.escore}</p>
-            </div>
-            
-            <div className="flex-1 min-w-[200px] bg-purple-50 p-4 rounded-lg">
-              <p className="text-lg font-semibold text-purple-800">Att. Activity</p>
-              <p className="text-3xl font-bold text-purple-600">{userData.atts}</p>
-            </div>
-            
-            <div className="flex-1 min-w-[200px] bg-orange-50 p-4 rounded-lg">
-              <p className="text-lg font-semibold text-orange-800">Act. Activity</p>
-              <p className="text-3xl font-bold text-orange-600">{userData.acts}</p>
+            <div className="flex space-x-4">
+              <div className="flex-1 min-w-[110px] bg-red-50 p-4 rounded-lg">
+                <p className="text-sm font-semibold text-red-800">Total Score</p>
+                <p className="text-xl font-bold text-red-600">{userData.total_score}</p>
+              </div>
+        
+              <div className={`flex-1 min-w-[130px] ${gradeBackground} p-4 rounded-lg`}>
+                <p className="text-sm font-semibold text-white">Current Grade</p>
+                <p className="text-xl font-bold text-white">{calculatedGrade}</p>
+              </div>
+        
+              <div className="flex-1 min-w-[110px] bg-blue-50 p-4 rounded-lg">
+                <p className="text-sm font-semibold text-blue-800">FB Score</p>
+                <p className="text-xl font-bold text-blue-600">{userData.fb}</p>
+              </div>
+              
+              <div className="flex-1 min-w-[110px] bg-green-50 p-4 rounded-lg">
+                <p className="text-sm font-semibold text-green-800">E. Activity</p>
+                <p className="text-xl font-bold text-green-600">{userData.escore}</p>
+              </div>
+              
+              <div className="flex-1 min-w-[110px] bg-purple-50 p-4 rounded-lg">
+                <p className="text-sm font-semibold text-purple-800">Att. Activity</p>
+                <p className="text-xl font-bold text-purple-600">{userData.atts}</p>
+              </div>
+              
+              <div className="flex-1 min-w-[130px] bg-orange-50 p-4 rounded-lg">
+                <p className="text-sm font-semibold text-orange-800">Act. Activity</p>
+                <p className="text-xl font-bold text-orange-600">{userData.acts}</p>
+              </div>
             </div>
           </>
         );
+        
       })()}
     </div>
   </div>
 )}
 
-      <div className="bg-white rounded-lg shadow-md">
-        <div className="p-4 border-b">
-          <h2 className="text-xl font-bold text-black">Your Posted Activities</h2>
-        </div>
-        
-        <div className="p-4">
-          {loading ? (
-            <div className="text-center p-4">Loading...</div>
-          ) : activities.length === 0 ? (
-            <p className="text-center text-gray-500">No activities posted yet</p>
-          ) : (
-            <div className="space-y-4">
-              {activities.map((activity) => (
-                <div key={activity.id} className="border rounded p-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="font-semibold">{activity.activity_name}</h3>
-                      <p className="text-sm text-gray-600">
-                        Starting Date: {new Date(activity.starting_date).toLocaleDateString()}
-                      </p>
-                      <p className="text-sm text-gray-600">
-  Name: {availableActivities.find(a => a.id === activity.activity_id)?.name || "Unknown"}
-</p>
-<p className="text-sm text-gray-600">
-  Type: {availableActivities.find(a => a.id === activity.activity_id)?.type || "Unknown"}
-</p>
-<p className="text-sm text-gray-600">
-  Score: {availableActivities.find(a => a.id === activity.activity_id)?.score || "Unknown"}
-</p>
-<p className="text-sm text-gray-600">
-Description: {availableActivities.find(a => a.id === activity.activity_id)?.description || "Unknown"}
-</p>
+<div className="bg-white rounded-lg shadow-md">
+  <div className="p-4 border-b">
+    <h2 className="text-xl font-bold text-black">Your Posted Activities</h2>
+  </div>
+  
+  <div className="p-4 max-h-96 overflow-auto"> {/* Set a max height and make it scrollable */}
+    {loading ? (
+      <div className="text-center p-4">Loading...</div>
+    ) : activities.length === 0 ? (
+      <p className="text-center text-gray-500">No activities posted yet</p>
+    ) : (
+      <div className="space-y-4">
+        {activities.map((activity) => (
+          <div key={activity.id} className="border rounded p-4">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold">{activity.activity_name}</h3>
+                <p className="text-sm text-gray-600">
+                  Starting Date: {new Date(activity.starting_date).toLocaleDateString()}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Name: {availableActivities.find(a => a.id === activity.activity_id)?.name || "Unknown"}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Type: {availableActivities.find(a => a.id === activity.activity_id)?.type || "Unknown"}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Score: {availableActivities.find(a => a.id === activity.activity_id)?.score || "Unknown"}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Description: {availableActivities.find(a => a.id === activity.activity_id)?.description || "Unknown"}
+                </p>
 
-                      <a 
-                        href={activity.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-blue-500 hover:underline"
-                      >
-                        View Activity
-                      </a>
-                    </div>
-                    <div className="space-x-2">
-                      
-                      <button
-                        className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
-                        onClick={() => handleDelete(activity.id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                <a 
+                  href={activity.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-500 hover:underline"
+                >
+                  View Activity
+                </a>
+              </div>
+              <div className="space-x-2">
+                <button
+                  className="bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
+                  onClick={() => handleDelete(activity.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        ))}
       </div>
+    )}
+  </div>
+</div>
+
     </div>
   );
 };

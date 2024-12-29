@@ -143,7 +143,9 @@ const ActivitiesModal = ({ activities, onClose, staffName }) => {
                 <div key={activity.id} className="border rounded p-4 bg-gray-50">
                   <h3 className="font-semibold">{activity.activity_name}</h3>
                   <p className="text-sm text-gray-600">
-                    Date: {new Date(activity.starting_date).toLocaleDateString()}
+                    Date: {new Date(activity.starting_date).toLocaleDateString()} -
+                    Activity ID: {activity.activity_id} -
+                    ID: {activity.id}
                   </p>
                   {activity.link && (
                     <a 

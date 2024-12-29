@@ -113,19 +113,11 @@ const DepartmentComponent = () => {
             <div className="flex justify-between w-full">
               <span className="text-lg font-medium text-gray-800">{department.name}</span>
               <div className="space-x-3">
-                <button
-                  onClick={() => {
-                    setEditing(true);
-                    setNewDepartmentName(department.name);
-                    setEditDepartmentId(department.id);
-                  }}
-                  className="px-6 py-3 text-lg text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:outline-none"
-                >
-                  Edit
-                </button>
+                
                 <button
                   onClick={() => handleDeleteDepartment(department.id)}
-                  className="px-6 py-3 text-lg text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none"
+                  className="px-6 py-3 text-lg text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none ml-5"
+
                 >
                   Delete
                 </button>

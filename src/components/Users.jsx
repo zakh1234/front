@@ -189,7 +189,7 @@ const FetchUsersTable = () => {
       {/* Add User Form */}
       {showAddUserForm && (
         <div className="bg-gray-100 p-4 rounded mb-4">
-          <h2 className="text-xl font-semibold">Add New User</h2>
+          <h2 className="text-xl font-semibold text-black">Add New User</h2>
           <form>
             <div className="grid grid-cols-2 gap-4">
               <input
@@ -265,7 +265,7 @@ const FetchUsersTable = () => {
                 )}
               </select>
               <select
-                name="role"
+                name="role_id"
                 value={newUser.role_id}
                 onChange={handleChange}
                 className="border p-2 rounded"

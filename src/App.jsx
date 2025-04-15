@@ -11,6 +11,7 @@ const App = () => {
         <Route path="/" element={<LoginPage />} /> {/* Use element prop instead of component */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/staff-dashboard" element={<StaffDashboard />} />
+       
       </Routes>
     </Router>
   );

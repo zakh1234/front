@@ -16,6 +16,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Reset margin and padding */
@@ -46,8 +48,8 @@ body {
 /* Add styles for the main container */
 #root {
   width: 100%;
-  min-height: 100vh;
-  display: flex;
+ 
+  
   flex-direction: column;
 }
 
@@ -148,7 +150,7 @@ button:focus-visible {
   height: 32px;  /* Adjust the height */
   width: 32px;   /* Adjust the width */
   color: #c18c2d;  /* Set the desired color */
-  margin-top: 50px;
+  margin-top: 1px;
   transition: all 0.3s ease;  /* Smooth transition for icon color and size */
 }
 

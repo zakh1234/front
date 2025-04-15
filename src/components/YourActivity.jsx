@@ -192,7 +192,7 @@ const handleDelete = async (id) => {
               placeholder="Activity Link"
               value={formData.link}
               onChange={(e) => setFormData({ ...formData, link: e.target.value })}
-              required
+              
             />
           </div>
 

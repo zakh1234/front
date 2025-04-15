@@ -7,6 +7,7 @@ const FetchStaffTable = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editFeedback, setEditFeedback] = useState(null); // State to hold the feedback score being edited
+  const [edittp, setEdittp] = useState(null); // State to hold the feedback score being edited
   const [selectedStaffActivities, setSelectedStaffActivities] = useState([]);
   const [showActivitiesModal, setShowActivitiesModal] = useState(false);
   const [selectedStaffId, setSelectedStaffId] = useState(null);
@@ -91,6 +92,15 @@ const FetchStaffTable = () => {
     }
   };
 
+  const handletpChange = (e, userId) => {
+    const updatedUsers = [...users];
+    const index = updatedUsers.findIndex(user => user.id === userId);
+    if (index !== -1) {
+      updatedUsers[index].tp = parseFloat(e.target.value);
+      setUsers(updatedUsers);
+    }
+  };
+
   const handleSaveFeedback = async (userId) => {
     try {
       const userToUpdate = users.find(user => user.id === userId);
@@ -111,6 +121,30 @@ const FetchStaffTable = () => {
     } catch (error) {
       console.error("Error saving feedback:", error);
       alert('An error occurred while updating the feedback score');
+    }
+  };
+
+
+  const handleSavetp = async (userId) => {
+    try {
+      const userToUpdate = users.find(user => user.id === userId);
+      
+      // Make sure the feedback score is valid before sending the request
+      if (userToUpdate.tp !== null && userToUpdate.tp >= 0) {
+        const response = await axios.put(`http://localhost:3000/users/edit-tp/${userId}`, {
+          tp: userToUpdate.tp,
+        });
+  
+        if (response.status === 200) {
+          setEdittp(null); // Hide the edit input after saving
+          alert('tp score updated successfully!');
+        }
+      } else {
+        alert('Please enter a valid tp score');
+      }
+    } catch (error) {
+      console.error("Error saving tp:", error);
+      alert('An error occurred while updating the tp score');
     }
   };
 
@@ -178,6 +212,7 @@ const ActivitiesModal = ({ activities, onClose, staffName }) => {
             <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>Title</th>
             <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>Department</th>
             <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>Email</th>
+            <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>T P.</th>
             <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>F B.</th>
             <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>ATT S.</th>
             <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>ACT S.</th>
@@ -290,6 +325,34 @@ const ActivitiesModal = ({ activities, onClose, staffName }) => {
             {departments.find(department => department.id === user.department_id)?.name || "Unknown Department"}
           </td>
           <td className="border border-gray-300 px-4 py-2">{user.email}</td>
+          <td className="border border-gray-300 px-4 py-2">
+            {edittp === user.id ? (
+              <input
+                type="number"
+                step="0.1"
+                min="0"
+                value={user.tp}
+                onChange={(e) => handletpChange(e, user.id)}
+                className="border border-gray-300 px-2 py-1"
+              />
+            ) : (
+              user.tp
+            )}
+            <button
+              className="bg-blue-500 text-white px-2 py-1 rounded ml-2"
+              onClick={() => setEdittp(user.id)}
+            >
+              {editFeedback === user.id ? "Cancel" : "Edit Teacher Points"}
+            </button>
+            {edittp === user.id && (
+              <button
+                className="bg-green-500 text-white px-2 py-1 rounded ml-2"
+                onClick={() => handleSavetp(user.id)}
+              >
+                Save
+              </button>
+            )}
+          </td>
           <td className="border border-gray-300 px-4 py-2">
             {editFeedback === user.id ? (
               <input

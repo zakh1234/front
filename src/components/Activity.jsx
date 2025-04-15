@@ -95,11 +95,11 @@ const ActivityComponent = () => {
       {/* Activity Form */}
       {isFormVisible && (
         <form onSubmit={handleFormSubmit} className="space-y-4 p-6 border rounded-lg shadow-lg max-w-lg mx-auto bg-white">
-          <h2 className="text-2xl font-semibold text-center">Add New Activity</h2>
+          <h2 className="text-2xl font-semibold text-center text-black">Add New Activity</h2>
 
           {/* Name Input */}
           <div className="flex flex-col">
-            <label htmlFor="name" className="font-medium text-lg mb-2">Name:</label>
+            <label htmlFor="name" className="font-medium text-lg mb-2 text-black">Name:</label>
             <input
               type="text"
               id="name"
@@ -113,7 +113,7 @@ const ActivityComponent = () => {
 
           {/* Description Input */}
           <div className="flex flex-col">
-            <label htmlFor="description" className="font-medium text-lg mb-2">Description:</label>
+            <label htmlFor="description" className="font-medium text-lg mb-2 text-black">Description:</label>
             <textarea
               id="description"
               name="description"
@@ -126,7 +126,7 @@ const ActivityComponent = () => {
 
           {/* Score Input */}
           <div className="flex flex-col">
-            <label htmlFor="score" className="font-medium text-lg mb-2">Score:</label>
+            <label htmlFor="score" className="font-medium text-lg mb-2 text-black">Score:</label>
             <input
               type="number"
               id="score"
@@ -140,7 +140,7 @@ const ActivityComponent = () => {
 
           {/* Type Select */}
           <div className="flex flex-col">
-            <label htmlFor="type" className="font-medium text-lg mb-2">Type:</label>
+            <label htmlFor="type" className="font-medium text-lg mb-2 text-black">Type:</label>
             <select
               id="type"
               name="type"

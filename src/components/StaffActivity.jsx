@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
+
+
 import axios from 'axios';
 
 const StaffActivityComponent = () => {
   const [activities, setActivities] = useState([]); // Initialize as empty array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
   const [isFormVisible, setIsFormVisible] = useState(false); // To toggle form visibility
   const [newActivity, setNewActivity] = useState({
     name: '',
@@ -87,8 +91,8 @@ const StaffActivityComponent = () => {
     <div>
       <h2>Activity List</h2>
 
-      
-      
+
+
 
       {/* Displaying activities */}
       {Array.isArray(activities) && activities.length > 0 ? (
@@ -99,7 +103,7 @@ const StaffActivityComponent = () => {
               <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>Description</th>
               <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>Score</th>
               <th className="border border-gray-300 px-4 py-2" style={{ backgroundColor: '#c18c2d' }}>Type</th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -109,7 +113,7 @@ const StaffActivityComponent = () => {
                 <td className="border border-gray-300 px-4 py-2">{activity?.description}</td>
                 <td className="border border-gray-300 px-4 py-2">{activity?.score}</td>
                 <td className="border border-gray-300 px-4 py-2">{activity?.type}</td>
-                
+
               </tr>
             ))}
           </tbody>

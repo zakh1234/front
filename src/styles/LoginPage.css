@@ -26,6 +26,7 @@
     padding: 30px;
     text-align: center;
     box-sizing: border-box;
+    justify-self: center;
   }
   
   /* Header - Logo and Title */

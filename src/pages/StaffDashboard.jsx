@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DocumentIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 import StaffActivity from '../components/StaffActivity';
 import YourActivity from '../components/YourActivity';
+import UploadImage from '../components/UploadImage';
 import logo from '../logo.png';
 
 const StaffDashboard = () => {
@@ -17,6 +18,7 @@ const StaffDashboard = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
+
       <div
         className={`fixed top-0 left-0 z-40 bg-gray-900 text-white w-64 p-6 h-full transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-64'
@@ -43,6 +45,15 @@ const StaffDashboard = () => {
             <DocumentIcon className="h-5 w-5 text-[#c18c2d]" />
             <span className="text-lg ml-1">Your Activity</span>
           </li>
+         
+          <li
+           onClick={() => setSelectedMenu('upload')}
+          className ="cursor-pointer hover:bg-gray-700 p-3 rounded-md flex items-center space-x-4 transition-colors duration-200 border-b border-gray-600"
+         >
+         <DocumentIcon className="h-5 w-5 text-[#c18c2d]" />
+        <span className="text-lg ml-1">Upload</span>
+        </li>
+
 
           <li
             onClick={handleLogout}
@@ -73,6 +84,7 @@ const StaffDashboard = () => {
 
         {selectedMenu === 'activity' && <StaffActivity />}
         {selectedMenu === 'youractivity' && <YourActivity />}
+        {selectedMenu === 'upload' && <UploadImage />}
       </div>
     </div>
   );

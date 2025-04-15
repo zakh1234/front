@@ -73,13 +73,13 @@ const LoginPage = () => {
           required
         />
 
-        {error && <p className="error">{error}</p>}
+        {error && <p className="error text-black">{error}</p>}
 
         <button type="submit" className="login-btn">Login</button>
       </form>
 
       <div className="footer">
-        <p>Project by Zaid Yasir, Hassan Haidar, and Rawand</p>
+        <p>Project by Zaid Yasir ,and ,Hassan Haidar</p>
       </div>
     </div>
   );

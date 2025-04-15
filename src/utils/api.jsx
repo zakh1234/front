@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: 'http://localhost:3000/',  // Backend API base URL
   timeout: 5000,  // Optional timeout for requests
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json', 
   },
 });
 
